@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AnimationSet;
+import android.view.animation.BounceInterpolator;
 import android.widget.ImageView;
 
 public class LaunchActivity extends AppCompatActivity {
@@ -68,6 +69,7 @@ public class LaunchActivity extends AppCompatActivity {
         csMain.clone(clMain);
 
         ivMagic = (ImageView) findViewById(R.id.iv_magic_launcher);
+        ivMagic.setAlpha(0f);
         ivWidth = ivMagic.getLayoutParams().width;
         ivHeight = ivMagic.getLayoutParams().height;
 //        ivMagic.setLayoutParams(new ConstraintLayout.LayoutParams(0, 0));
@@ -91,9 +93,9 @@ public class LaunchActivity extends AppCompatActivity {
         ObjectAnimator animatorAlpha = ObjectAnimator.ofFloat(ivMagic, "alpha", 0, 1);
 
         animationSet.playTogether(animatorScaleX, animatorScaleY, animatorAlpha);
-        animationSet.setDuration(400);
+        animationSet.setDuration(1200);
         animationSet.setStartDelay(400);
-        animationSet.setInterpolator(new AccelerateDecelerateInterpolator());
+        animationSet.setInterpolator(new BounceInterpolator());
         animationSet.start();
         animationSet.addListener(new Animator.AnimatorListener() {
             @Override
@@ -104,7 +106,6 @@ public class LaunchActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animator animator) {
 
-                ivMagic.setVisibility(View.VISIBLE);
             }
 
             @Override
