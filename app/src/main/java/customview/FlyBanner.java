@@ -279,9 +279,9 @@ public class FlyBanner extends RelativeLayout {
                 int current = mViewPager.getCurrentItem();
                 int lastReal = mViewPager.getAdapter().getCount() - 2;
                 if (current == 0) {
-                    mViewPager.setCurrentItem(lastReal, false);
+                    mViewPager.setCurrentItem(lastReal, true);
                 } else if (current == lastReal + 1) {
-                    mViewPager.setCurrentItem(1, false);
+                    mViewPager.setCurrentItem(1, true);
                 }
             }
         }

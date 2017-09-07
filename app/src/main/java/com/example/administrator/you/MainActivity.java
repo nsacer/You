@@ -58,11 +58,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initFlyBanner() {
 
         List<Integer> integers = new ArrayList<>();
-        integers.add(R.mipmap.ic_praise_sm1);
-        integers.add(R.mipmap.ic_praise_sm2);
-        integers.add(R.mipmap.ic_praise_sm3);
-        integers.add(R.mipmap.ic_praise_sm4);
-        integers.add(R.mipmap.ic_praise_sm5);
+        integers.add(R.mipmap.g1);
+        integers.add(R.mipmap.g2);
+        integers.add(R.mipmap.g3);
+        integers.add(R.mipmap.g4);
+        integers.add(R.mipmap.g5);
+        integers.add(R.mipmap.g6);
+        integers.add(R.mipmap.g7);
+        integers.add(R.mipmap.g8);
+        integers.add(R.mipmap.g9);
+        integers.add(R.mipmap.g10);
 
         FlyBanner flyBanner = (FlyBanner) findViewById(R.id.fly_banner_main);
         flyBanner.setImages(integers);
@@ -95,7 +100,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void clickLoveFab() {
 
-        flutteringLayout.addHeart();
+        int count = (int) (Math.random() * 20);
+        for (int i = 0; i < count; i++) {
+
+            flutteringLayout.addHeart();
+        }
     }
 
     private void clickFabLoveLeft() {

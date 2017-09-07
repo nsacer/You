@@ -10,4 +10,15 @@
         <attr name="points_visibility" format="boolean" />
         <attr name="points_container_background" format="reference" />
     </declare-styleable>
+    <!-- CircleImageView的xml样式属性 -->
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="border_overlay" format="boolean" />
+    </declare-styleable>
+    <!-- 弹幕item样式xml属性 -->
+    <declare-styleable name="RedPackageView">
+        <attr name="android:text" />
+        <attr name="android:src" />
+    </declare-styleable>
 </resources>

@@ -5,7 +5,6 @@
     android:id="@+id/cl_main_launcher"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="24dp"
     tools:context="com.example.administrator.you.LaunchActivity">
 
     <android.support.constraint.Guideline
@@ -32,8 +31,10 @@
         android:id="@+id/htv_welcome"
         android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_margin="24dp"
         android:gravity="center"
         android:textSize="14sp"
+        android:textStyle="italic"
         app:animateType="typer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,11 +46,11 @@
         android:id="@+id/iv_avatar_launcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
         android:contentDescription="@null"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toTopOf="@+id/htv_welcome"
         app:layout_constraintEnd_toStartOf="@+id/tv_name_launcher"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gl_ad_log" />
 
@@ -57,34 +58,36 @@
         android:id="@+id/tv_name_launcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="你好"
         android:layout_marginLeft="16dp"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        android:text="Just for you"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/htv_welcome"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@+id/iv_avatar_launcher"
-        app:layout_constraintTop_toBottomOf="@+id/gl_ad_log"/>
+        app:layout_constraintTop_toBottomOf="@+id/gl_ad_log" />
 
     <ImageView
         android:id="@+id/iv_bing_launcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:contentDescription="@null"
         android:src="@mipmap/ic_launcher"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gl_ad_log"
-        android:layout_marginRight="48dp"
-        android:visibility="invisible"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_jump_launcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="48dp"
-        app:fabSize="mini"
+        android:visibility="invisible"
+        android:layout_margin="40dp"
         android:src="@mipmap/arrow_curved"
+        app:fabSize="mini"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gl_ad_log"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
