@@ -28,23 +28,63 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="曾经沧海难为水"
+    <com.hanks.htextview.HTextView
+        android:id="@+id/htv_welcome"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:gravity="center"
         android:textSize="14sp"
+        app:animateType="typer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <!--animateType: typer/scale/evaporate/fall/sparkle/anvil/line/pixelate-->
+
     <ImageView
+        android:id="@+id/iv_avatar_launcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toTopOf="@+id/tv_welcome"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@null"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintBottom_toTopOf="@+id/htv_welcome"
+        app:layout_constraintEnd_toStartOf="@+id/tv_name_launcher"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gl_ad_log" />
+
+    <TextView
+        android:id="@+id/tv_name_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="你好"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintBottom_toTopOf="@+id/htv_welcome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_avatar_launcher"
+        app:layout_constraintTop_toBottomOf="@+id/gl_ad_log"/>
+
+    <ImageView
+        android:id="@+id/iv_bing_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gl_ad_log"
+        android:layout_marginRight="48dp"
+        android:visibility="invisible"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_jump_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="48dp"
+        app:fabSize="mini"
+        android:src="@mipmap/arrow_curved"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gl_ad_log"/>
 
 </android.support.constraint.ConstraintLayout>

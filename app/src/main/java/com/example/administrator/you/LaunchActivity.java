@@ -1,39 +1,51 @@
 package com.example.administrator.you;
 
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
-import android.os.Build;
+import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Rect;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.constraint.ConstraintLayout;
-import android.support.constraint.ConstraintSet;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.transition.TransitionManager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AnimationSet;
 import android.view.animation.BounceInterpolator;
 import android.widget.ImageView;
 
-public class LaunchActivity extends AppCompatActivity {
+import com.hanks.htextview.HTextView;
 
-    private ConstraintLayout clMain;
-    private ConstraintSet csMain = new ConstraintSet();
+import tyrantgit.explosionfield.ExplosionField;
+
+public class LaunchActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private final String[] sWelcome = new String[]{
+
+            "曾经沧海难为水",
+            "除却巫山不是云",
+            "何当共剪西窗烛",
+            "却话巴山夜雨时",
+            "轻罗小扇扑流萤"
+    };
+    private int index = 0;
 
     private ImageView ivMagic;
 
-    private int ivWidth = 0, ivHeight=0;
+    private HTextView hTextView;
 
-    private Handler handler = new Handler() {
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
 
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            doMessage(msg);
         }
     };
 
@@ -52,36 +64,31 @@ public class LaunchActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                animMagicIv();
-//            }
-//        }, 400);
-
         animObjectMagicIv();
+        mHandler.sendEmptyMessage(0);
+    }
+
+    private void doMessage(Message msg) {
+
+        if (msg.what == 0) {
+
+            int indexCurrent = index % sWelcome.length;
+            hTextView.animateText(sWelcome[indexCurrent]);
+            index++;
+            mHandler.sendEmptyMessageDelayed(0, 2000);
+        }
     }
 
     private void initView() {
 
-        clMain = (ConstraintLayout) findViewById(R.id.cl_main_launcher);
-        csMain.clone(clMain);
-
         ivMagic = (ImageView) findViewById(R.id.iv_magic_launcher);
         ivMagic.setAlpha(0f);
-        ivWidth = ivMagic.getLayoutParams().width;
-        ivHeight = ivMagic.getLayoutParams().height;
-//        ivMagic.setLayoutParams(new ConstraintLayout.LayoutParams(0, 0));
-    }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    private void animMagicIv() {
+        hTextView = (HTextView) findViewById(R.id.htv_welcome);
 
-        TransitionManager.beginDelayedTransition(clMain);
-        csMain.constrainWidth(R.id.iv_magic_launcher, ivWidth);
-        csMain.constrainHeight(R.id.iv_magic_launcher, ivHeight);
-        csMain.applyTo(clMain);
+        FloatingActionButton fabJump = (FloatingActionButton) findViewById(R.id.fab_jump_launcher);
+        fabJump.setOnClickListener(this);
+
     }
 
     private void animObjectMagicIv() {
@@ -89,34 +96,42 @@ public class LaunchActivity extends AppCompatActivity {
         AnimatorSet animationSet = new AnimatorSet();
 
         ObjectAnimator animatorScaleX = ObjectAnimator.ofFloat(ivMagic, "scaleX", 0, 1);
+
         ObjectAnimator animatorScaleY = ObjectAnimator.ofFloat(ivMagic, "scaleY", 0, 1);
+
         ObjectAnimator animatorAlpha = ObjectAnimator.ofFloat(ivMagic, "alpha", 0, 1);
 
         animationSet.playTogether(animatorScaleX, animatorScaleY, animatorAlpha);
-        animationSet.setDuration(1200);
+        animationSet.setDuration(2000);
         animationSet.setStartDelay(400);
         animationSet.setInterpolator(new BounceInterpolator());
         animationSet.start();
-        animationSet.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
+    }
 
-            }
+    @Override
+    public void onClick(View v) {
 
-            @Override
-            public void onAnimationEnd(Animator animator) {
+        switch (v.getId()) {
 
-            }
+            case R.id.fab_jump_launcher:
 
-            @Override
-            public void onAnimationCancel(Animator animator) {
+                bingBoomView(v);
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(LaunchActivity.this, MainActivity.class));
+                    }
+                }, 1600);
 
-            }
+                break;
+        }
+    }
 
-            @Override
-            public void onAnimationRepeat(Animator animator) {
+    private void bingBoomView(View view) {
 
-            }
-        });
+        ImageView iv = (ImageView) findViewById(R.id.iv_bing_launcher);
+        ExplosionField explosionField = ExplosionField.attach2Window(this);
+        explosionField.explode(view);
+        explosionField.explode(iv);
     }
 }
