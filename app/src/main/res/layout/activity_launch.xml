@@ -16,26 +16,32 @@
         app:layout_constraintGuide_percent="0.8"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/iv_magic_launcher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:contentDescription="@null"
-        android:src="@mipmap/magic"
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingTop="40dp"
         app:layout_constraintBottom_toTopOf="@+id/gl_ad_log"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <com.hanks.htextview.HTextView
+        <ImageView
+            android:id="@+id/iv_magic_launcher"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:src="@mipmap/magic" />
+    </FrameLayout>
+
+    <com.hanks.htextview.scale.ScaleTextView
         android:id="@+id/htv_welcome"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_margin="24dp"
         android:gravity="center"
         android:textSize="14sp"
-        android:textStyle="italic"
-        app:animateType="typer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -48,8 +54,8 @@
         android:layout_height="wrap_content"
         android:contentDescription="@null"
         android:src="@mipmap/ic_launcher"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/htv_welcome"
-        app:layout_constraintEnd_toStartOf="@+id/tv_name_launcher"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gl_ad_log" />
@@ -58,13 +64,13 @@
         android:id="@+id/tv_name_launcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         android:layout_marginLeft="16dp"
         android:text="Just for you"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/htv_welcome"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@+id/iv_avatar_launcher"
         app:layout_constraintTop_toBottomOf="@+id/gl_ad_log" />
 
